@@ -1,6 +1,8 @@
 package com.makeev.inside.controller;
 
 import com.makeev.inside.dto.UserAuthDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -8,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @PostMapping
-    public void auth(@RequestBody UserAuthDto user){
+    public ResponseEntity auth(@RequestBody UserAuthDto user){
 
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
