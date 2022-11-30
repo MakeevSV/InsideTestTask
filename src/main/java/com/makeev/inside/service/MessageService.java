@@ -2,6 +2,7 @@ package com.makeev.inside.service;
 
 import com.makeev.inside.dao.MessageRepo;
 import com.makeev.inside.dto.MessageDto;
+import com.makeev.inside.model.Author;
 import com.makeev.inside.model.Message;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,19 @@ public class MessageService {
     ModelMapper modelMapper = new ModelMapper();
 
     private final MessageRepo messageRepo;
+    private final UserService userService;
     @Autowired
-    public MessageService(MessageRepo messageRepo) {
+    public MessageService(MessageRepo messageRepo, UserService userService) {
         this.messageRepo = messageRepo;
+        this.userService = userService;
     }
 
     public void newMessage(MessageDto request){
-        messageRepo.save(modelMapper.map(request,Message.class));
+        Author author = userService.findByName(request.getName()).get();
+        Message message = new Message();
+        message.setName(author);
+        message.setMessage(request.getMessage());
+        messageRepo.save(message);
     }
 
     public List<MessageDto> getLastNMessage(MessageDto messageDto){

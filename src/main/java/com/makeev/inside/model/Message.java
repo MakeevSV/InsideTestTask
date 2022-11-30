@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "message")
 @Data @NoArgsConstructor
 public class Message implements Serializable {
     @Id
@@ -14,8 +15,8 @@ public class Message implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User name;
+    @JoinColumn(name = "author_id")
+    private Author name;
 
     private String message;
 
