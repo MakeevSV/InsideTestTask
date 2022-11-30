@@ -22,7 +22,7 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
-    @GetMapping
+    @PostMapping
     public Map<String,String> authenticate(@RequestBody UserAuthDto input){
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(input.getName(),input.getPassword());

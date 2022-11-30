@@ -46,6 +46,6 @@ public class AuthorDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
