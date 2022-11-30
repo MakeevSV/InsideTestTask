@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/message")
 public class Controller {
     private final MessageService messageService;
     @Autowired
@@ -20,7 +20,7 @@ public class Controller {
         this.messageService = messageService;
     }
 
-    @PostMapping("/message")
+    @PostMapping
     public ResponseEntity messageDispatcher(@RequestBody MessageDto message){
         if(messageService.keyChecker(message).isPresent()){
            return new ResponseEntity(messageService.getLastNMessage(message), HttpStatus.OK);
