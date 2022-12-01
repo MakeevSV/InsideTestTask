@@ -2,7 +2,10 @@ package com.makeev.inside.controller;
 
 import com.makeev.inside.dto.UserAuthDto;
 import com.makeev.inside.security.JWTUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,16 +26,14 @@ public class AuthController {
     }
 
     @PostMapping
-    public Map<String,String> authenticate(@RequestBody UserAuthDto input){
+    public ResponseEntity authentication(@RequestBody @Valid UserAuthDto input){
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(input.getName(),input.getPassword());
-        try {
+
             authenticationManager.authenticate(authenticationToken);
-        } catch (BadCredentialsException e){
-            return Map.of("message", "Incorrect credentials");
-        }
+
         String token = jwtUtil.generateToken(input.getName());
-        return Map.of("jwt-token", token);
+        return new ResponseEntity<>(Map.of("jwt-token", token), HttpStatus.OK);
     }
 
 }
