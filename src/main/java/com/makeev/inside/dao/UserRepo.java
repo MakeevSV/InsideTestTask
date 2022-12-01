@@ -10,7 +10,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends JpaRepository<Author, Integer> {
 
-    @Query("select u from Author u where u.name = ?1")
-    Optional<Author> findUserByName(String name);
+
+    @Query("select a from Author a where upper(a.name) = upper(?1)")
+    Optional<Author> findUserByNameIgnoreCase(String name);
 
 }

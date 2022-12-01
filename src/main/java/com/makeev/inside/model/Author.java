@@ -14,12 +14,15 @@ public class Author implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(unique = true)
     private String name;
     private String password;
 
     @OneToMany(mappedBy = "name", cascade = CascadeType.ALL)
     private List<Message> messageList;
 
-
+    public Author(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 }

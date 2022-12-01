@@ -18,6 +18,6 @@ public class UserService {
 
 
     public Optional<Author> findByName(String name){
-        return userRepo.findUserByName(name);
+        return userRepo.findUserByNameIgnoreCase(name);
     }
 }
