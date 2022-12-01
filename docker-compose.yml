@@ -1,0 +1,29 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: inside
+      POSTGRES_USER: inside
+      POSTGRES_DB: insideDB
+    ports:
+      - 5432:5432
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+  inside:
+    image: serebass/inside
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/insideDB
+      - SPRING_DATASOURCE_USERNAME=inside
+      - SPRING_DATASOURCE_PASSWORD=inside
+      - JWT_EXPIRE_MINUTES=1
+    ports:
+      - 8080:8080
