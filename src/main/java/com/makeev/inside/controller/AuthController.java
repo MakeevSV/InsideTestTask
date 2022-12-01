@@ -33,7 +33,7 @@ public class AuthController {
             authenticationManager.authenticate(authenticationToken);
 
         String token = jwtUtil.generateToken(input.getName());
-        return new ResponseEntity<>(Map.of("jwt-token", token), HttpStatus.OK);
+        return new ResponseEntity<>(Map.of("token", token), HttpStatus.OK);
     }
 
 }
