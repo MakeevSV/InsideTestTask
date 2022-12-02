@@ -63,7 +63,7 @@
 > 
 > Заполнить в соответствующие поля имя и пароль.
 > 
-> curl -s -X POST -H 'Content-Type: application/json' --data '{"name":"Имя пользователя","password":"Пароль"}' -v http://localhost:8080/api/v1/auth
+> curl -s -X POST -H 'Content-Type: application/json' --data '{"name":"Имя пользователя","password":"Пароль"}' -v http://localhost:8082/api/v1/auth
 
 
 
@@ -71,6 +71,6 @@
 > 
 > Вместо TOKEN подставить полученный в предыдущем запросе ключ. Заполнить поля имя и текст.
 > 
-> curl -s -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer_TOKEN' --data '{"name":"имя","message":"текст сообщения"}' -v http://localhost:8080/api/v1/message
+> curl -s -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer_TOKEN' --data '{"name":"имя","message":"текст сообщения"}' -v http://localhost:8082/api/v1/message
 > 
 > Для проверки истории использовать текст сообщения "history N" где N количество возвращаемых сообщений
