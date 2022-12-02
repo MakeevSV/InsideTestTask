@@ -12,11 +12,6 @@ services:
       POSTGRES_DB: insideDB
     ports:
       - 5432:5432
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8081:8080
   inside:
     image: makeevsv/inside
     restart: always
